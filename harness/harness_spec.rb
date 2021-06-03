@@ -29,7 +29,7 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
 
     it '2. Spacecraft attributes' do
       expect(@daedalus).to respond_to(:name).with(0).argument
-      expect(@daedalus.name).to eq('Daedalus')  
+      expect(@daedalus.name).to eq('Daedalus')
 
       expect(@daedalus).to respond_to(:fuel).with(0).argument
       expect(@daedalus.fuel).to eq(400)
@@ -43,10 +43,10 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
     it '4. Person attributes' do
       expect(@sampson).to respond_to(:name).with(0).argument
       expect(@sampson.name).to eq('Sampson Edwards')
-      
+
       expect(@sampson).to respond_to(:experience).with(0).argument
       expect(@sampson.experience).to eq(7)
-      
+
       expect(@sampson).to respond_to(:specialties).with(0).argument
       expect(@sampson.specialties).to eq([])
     end
@@ -89,7 +89,7 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
 
     it '4. Ship has requirements - and can add requirements' do
       expect(@prometheus).to respond_to(:requirements).with(0).argument
-      
+
       expect(@prometheus.requirements).to eq([])
 
       expect(@prometheus).to respond_to(:add_requirement).with(1).argument
@@ -116,12 +116,12 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
       @seventh_flotilla.add_personnel(@polly)
       @seventh_flotilla.add_personnel(@rover)
       @seventh_flotilla.add_personnel(@sampson)
-      
+
       @daedalus.add_requirement({astrophysics: 6})
       @daedalus.add_requirement({quantum_mechanics: 3})
 
       expect(@seventh_flotilla).to respond_to(:recommend_personnel).with(1).argument
-      expect(@seventh_flotilla.recommend_personnel(@daedalus)).to eq([@kathy])
+      expect(@seventh_flotilla.recommend_personnel(@daedalus)).to eq([@kathy, @sampson])
     end
   end
 
@@ -140,7 +140,7 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
       @seventh_flotilla.add_personnel(@polly)
       @seventh_flotilla.add_personnel(@rover)
       @seventh_flotilla.add_personnel(@sampson)
-      
+
       @daedalus.add_requirement({astrophysics: 6})
       @daedalus.add_requirement({quantum_mechanics: 3})
 
@@ -150,30 +150,30 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
 
     it '1. Flotilla adds ships' do
       expect(@seventh_flotilla).to respond_to(:add_ship).with(1).argument
-      
+
       @seventh_flotilla.add_ship(@odyssey)
       @seventh_flotilla.add_ship(@prometheus)
 
       expect(@seventh_flotilla.ships).to eq([@odyssey, @prometheus])
-    end    
-    
+    end
+
 
     it '2. Flotilla Personnel by ship' do
       @seventh_flotilla.add_ship(@daedalus)
-      @seventh_flotilla.add_ship(@odyssey)    
+      @seventh_flotilla.add_ship(@odyssey)
 
       expect(@seventh_flotilla).to respond_to(:personnel_by_ship).with(0).argument
-      
+
       expected = {
-        @odyssey => [@kathy, @sampson],
+        @daedalus => [@kathy, @sampson],
         @prometheus => [@polly]
       }
 
       expect(@seventh_flotilla.personnel_by_ship).to eq(expected)
-      
+
     end
   end
-  
+
   describe 'Iteration 4' do
     it '1. Flotilla ready ships' do
       @kathy.add_specialty(:astrophysics)
@@ -189,12 +189,12 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
       @seventh_flotilla.add_personnel(@polly)
       @seventh_flotilla.add_personnel(@rover)
       @seventh_flotilla.add_personnel(@sampson)
-      
+
       @daedalus.add_requirement({astrophysics: 6})
       @daedalus.add_requirement({quantum_mechanics: 3})
 
       @prometheus.add_requirement({operations: 6})
-      @prometheus.add_requirement({science: 1}) 
+      @prometheus.add_requirement({science: 1})
 
       @seventh_flotilla.add_ship(@daedalus)
       @seventh_flotilla.add_ship(@prometheus)
@@ -205,4 +205,3 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
     end
   end
 end
-
