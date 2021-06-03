@@ -29,7 +29,7 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
 
     it '2. Spacecraft attributes' do
       expect(@daedalus).to respond_to(:name).with(0).argument
-      expect(@daedalus.name).to eq('Daedalus')
+      expect(@daedalus.name).to eq('Daedalus')  
 
       expect(@daedalus).to respond_to(:fuel).with(0).argument
       expect(@daedalus.fuel).to eq(400)
@@ -43,10 +43,10 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
     it '4. Person attributes' do
       expect(@sampson).to respond_to(:name).with(0).argument
       expect(@sampson.name).to eq('Sampson Edwards')
-
+      
       expect(@sampson).to respond_to(:experience).with(0).argument
       expect(@sampson.experience).to eq(7)
-
+      
       expect(@sampson).to respond_to(:specialties).with(0).argument
       expect(@sampson.specialties).to eq([])
     end
@@ -89,7 +89,6 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
 
     it '4. Ship has requirements - and can add requirements' do
       expect(@prometheus).to respond_to(:requirements).with(0).argument
-
       expect(@prometheus.requirements).to eq([])
 
       expect(@prometheus).to respond_to(:add_requirement).with(1).argument
@@ -150,7 +149,6 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
 
     it '1. Flotilla adds ships' do
       expect(@seventh_flotilla).to respond_to(:add_ship).with(1).argument
-
       @seventh_flotilla.add_ship(@odyssey)
       @seventh_flotilla.add_ship(@prometheus)
 
