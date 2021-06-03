@@ -28,10 +28,10 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
     end
 
     it '2. Spacecraft attributes' do
-      expect(Spacecraft).to respond_to(:name).with(0).argument
+      expect(@daedalus).to respond_to(:name).with(0).argument
       expect(@daedalus.name).to eq('Daedalus')  
 
-      expect(Spacecraft).to respond_to(:fuel).with(0).argument
+      expect(@daedalus).to respond_to(:fuel).with(0).argument
       expect(@daedalus.fuel).to eq(400)
     end
 
@@ -41,18 +41,18 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
     end
 
     it '4. Person attributes' do
-      expect(Person).to respond_to(:name).with(0).argument
+      expect(@sampson).to respond_to(:name).with(0).argument
       expect(@sampson.name).to eq('Sampson Edwards')
       
-      expect(Person).to respond_to(:experience).with(0).argument
+      expect(@sampson).to respond_to(:experience).with(0).argument
       expect(@sampson.experience).to eq(7)
       
-      expect(Person).to respond_to(:specialties).with(0).argument
+      expect(@sampson).to respond_to(:specialties).with(0).argument
       expect(@sampson.specialties).to eq([])
     end
 
     it '5. Person can add specialties' do
-      expect(Person).to respond_to(:add_specialty).with(1).argument
+      expect(@sampson).to respond_to(:add_specialty).with(1).argument
 
       @sampson.add_specialty(:something)
       @sampson.add_specialty(:completely_different)
@@ -68,18 +68,18 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
     end
 
     it '2. Flotilla attributes' do
-      expect(Flotilla).to respond_to(:name).with(0).argument
+      expect(@seventh_flotilla).to respond_to(:name).with(0).argument
       expect(@seventh_flotilla.name).to eq('Seventh Flotilla')
 
-      expect(Flotilla).to respond_to(:personnel).with(0).argument
+      expect(@seventh_flotilla).to respond_to(:personnel).with(0).argument
       expect(@seventh_flotilla.personnel).to eq([])
 
-      expect(Flotilla).to respond_to(:ships).with(0).argument
+      expect(@seventh_flotilla).to respond_to(:ships).with(0).argument
       expect(@seventh_flotilla.ships).to eq([])
     end
 
     it '3. Flotilla adds people' do
-      expect(Flotilla).to respond_to(:add_personnel).with(1).argument
+      expect(@seventh_flotilla).to respond_to(:add_personnel).with(1).argument
 
       @seventh_flotilla.add_personnel(@sampson)
       @seventh_flotilla.add_personnel(@rover)
@@ -88,11 +88,11 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
     end
 
     it '4. Ship has requirements - and can add requirements' do
-      expect(Ship).to respond_to(:requirements).with(0).argument
+      expect(@prometheus).to respond_to(:requirements).with(0).argument
       
       expect(@prometheus.requirements).to eq([])
 
-      expect(Ship).to respond_to(:add_requirement).with(1).argument
+      expect(@prometheus).to respond_to(:add_requirement).with(1).argument
 
       @prometheus.add_requirement({operations: 6})
       @prometheus.add_requirement({maintenance: 3})
@@ -120,7 +120,7 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
       @daedalus.add_requirement({astrophysics: 6})
       @daedalus.add_requirement({quantum_mechanics: 3})
 
-      expect(Flotilla).to respond_to(:recommend_personnel).with(1).argument
+      expect(@seventh_flotilla).to respond_to(:recommend_personnel).with(1).argument
       expect(@seventh_flotilla.recommend_personnel(@daedalus)).to eq([@kathy])
     end
   end
@@ -149,7 +149,7 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
     end
 
     it '1. Flotilla adds ships' do
-      expect(Flotilla).to respond_to(:add_ship).with(1).argument
+      expect(@seventh_flotilla).to respond_to(:add_ship).with(1).argument
       
       @seventh_flotilla.add_ship(@odyssey)
       @seventh_flotilla.add_ship(@prometheus)
@@ -162,7 +162,7 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
       @seventh_flotilla.add_ship(@daedalus)
       @seventh_flotilla.add_ship(@odyssey)    
 
-      expect(Flotilla).to respond_to(:personnel_by_ship).with(0).argument
+      expect(@seventh_flotilla).to respond_to(:personnel_by_ship).with(0).argument
       
       expected = {
         @odyssey => [@kathy, @sampson],
@@ -199,7 +199,7 @@ RSpec.describe 'Space Force Spec Harness 🚀' do
       @seventh_flotilla.add_ship(@daedalus)
       @seventh_flotilla.add_ship(@prometheus)
 
-      expect(Flotilla).to respond_to(:ready_ships).with(1).argument
+      expect(@seventh_flotilla).to respond_to(:ready_ships).with(1).argument
 
       expect(@seventh_flotilla.ready_ships(100)).to eq([@daedalus])
     end
